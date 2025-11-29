@@ -7,7 +7,7 @@ Small utility module providing a simple file-backed memory abstraction for two m
             [user_msg1, bot_msg1, user_msg2, bot_msg2, ...]
 
 Primary function exported to use:
-    change_memory(form: str, type: str, content: Optional[list[str]] = None)
+    process_memory(form: str, type: str, content: Optional[list[str]] = None)
 
 Behavior:
  - type == "append" : content must be list[str]; extends existing memory by those items.
@@ -83,7 +83,7 @@ def _write_memory(form: str, items: List[str]) -> None:
 
 
 # --- Public API ------------------------------------------------------------
-def change_memory(form: str, type: str, content: Optional[List[str]] = None) -> Union[List[str], bool]:
+def process_memory(form: str, type: str, content: Optional[List[str]] = None) -> Union[List[str], bool]:
     """
     Manage the file-backed memory.
 
@@ -136,15 +136,15 @@ def change_memory(form: str, type: str, content: Optional[List[str]] = None) -> 
 
 # Convenience helpers (optional)
 def fetch_memory(form: str) -> List[str]:
-    return change_memory(form=form, type="fetch")
+    return process_memory(form=form, type="fetch")
 
 
 def append_memory(form: str, items: List[str]) -> bool:
-    return change_memory(form=form, type="append", content=items)
+    return process_memory(form=form, type="append", content=items)
 
 
 def update_memory(form: str, items: Optional[List[str]]) -> bool:
-    return change_memory(form=form, type="update", content=items)
+    return process_memory(form=form, type="update", content=items)
 
 # --- Public API for LLM invocation ----------------------------------------------
 def invoke_llm(

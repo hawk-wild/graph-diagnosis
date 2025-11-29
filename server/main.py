@@ -10,7 +10,7 @@ Endpoints:
                      -> returns {"response": str, "continue": bool}
 
 Run:
-    uvicorn main:app --reload
+    python main.py
 """
 
 import os
@@ -52,8 +52,8 @@ def refresh():
     This endpoint performs a full reset of both 'list' and 'chat' memories.
     """
     try:
-        utils.change_memory(form="list", type="update", content=[])
-        utils.change_memory(form="chat", type="update", content=[])
+        utils.process_memory(form="list", type="update", content=[])
+        utils.process_memory(form="chat", type="update", content=[])
         logger.info("Memories reset by /refresh")
         return {"reset": True}
     except Exception as e:

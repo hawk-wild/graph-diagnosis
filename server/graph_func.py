@@ -4,7 +4,7 @@ graph_func.py
 -------------------------------------------------------------------
 AVAILABLE FUNCTIONS (from utils.py):
 
-change_memory(form: str, type: str, content: Optional[list[str]] = None)
+process_memory(form: str, type: str, content: Optional[list[str]] = None)
       form options:
           "chat" : alternating user / bot messages
                     [user1, bot1, user2, bot2, ...]
